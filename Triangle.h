@@ -34,4 +34,16 @@ public:
     bool esInvalido() const {
         return (lado1 + lado2 <= lado3) || (lado1 + lado3 <= lado2) || (lado2 + lado3 <= lado1);
     }
+
+    void clasificacion() const {
+        if (esInvalido()) {
+            std::cout << "Triángulo invalido" << std::endl;
+        } else if (esEquilatero()) {
+            std::cout << "Triángulo equilatero" << std::endl;
+        } else if (esIsoceles()) {
+            std::cout << "Triángulo isosceles" << std::endl;
+        } else {
+            std::cout << "Triángulo escaleno" << std::endl;
+        }
+    }
 };

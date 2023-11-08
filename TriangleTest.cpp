@@ -67,6 +67,34 @@ TEST_F(TriangleTest, IngresoPorConsola) {
     ASSERT_TRUE(aux->esEquilatero() || aux->esIsoceles() || aux->esEscaleno() || aux->esInvalido());
 }
 
+TEST_F(TriangleTest, Clasificacion) {
+    std::ostringstream output;
+
+    // Redirigir la salida estandar a un flujo para capturarla
+    std::streambuf* coutBuffer = std::cout.rdbuf();
+    std::cout.rdbuf(output.rdbuf());
+
+    // Probar la clasificacion de triángulos
+    t1->clasificacion();
+    t2->clasificacion();
+    t3->clasificacion();
+    t4->clasificacion();
+
+    // Restaurar la salida estándar
+    std::cout.rdbuf(coutBuffer);
+
+    // Verificar la salida capturada
+    std::string result = output.str();
+    std::string expectedOutput =
+        "Triángulo equilatero\n"
+        "Triángulo isosceles\n"
+        "Triángulo escaleno\n"
+        "Triángulo invalido\n";
+
+    ASSERT_EQ(result, expectedOutput);
+}
+
+
 int main(int argc, char** argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
